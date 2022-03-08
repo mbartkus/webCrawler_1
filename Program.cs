@@ -24,7 +24,15 @@ namespace webCrawler_1
         
             Task task = AsyncStartCrawl(daysFromToday, daysFromToday_2, returnAfter, CsvPath);
             Console.ReadLine();
-       
+
+            /** later for optimizing Task async fnc.
+            CancellationTokenSource cancTokenSrc = new CancellationTokenSource();
+            var token = cancTokenSrc.Token;
+
+            Task task2 = AsyncStartCrawl(daysFromToday, returnAfter, CsvPath);
+            Console.ReadLine();
+             **/
+
         }
 
         private static async Task AsyncStartCrawl(int daysFromToday, int daysFromToday_2, int returnAfter, string path)
@@ -156,7 +164,7 @@ namespace webCrawler_1
                             
                             flightData.inbound_departure_time = objArrival.SelectSingleNode("table/tbody/tr/td[1]/span[3]").InnerText.Replace("(", "").Replace(")", "")
                             + " " + objArrival.SelectSingleNode("table/tbody/tr/td[1]/span[4]").InnerText.Replace("(", "").Replace(")", "");
-                            //span[@title='input']
+                            
 
                             flightData.inbound_arrival_airport = objArrival.SelectSingleNode("table/tbody/tr/td[3]/span[4]/text()[2]").InnerText.Replace("\n", "").Replace("\r", "").Replace("(", "").Replace(")", "");
 
